@@ -10,26 +10,6 @@ class AuthController extends Controller {
         $this->access_token = $access_token;
     }
 
-    public function login_token() {
-        if (empty($this->access_token)) {
-            $this->redirect("auth/login");
-        }
-
-        $data = Token::decode($this->access_token);
-
-        if (!$data || !isset($data['username'])) {
-            $this->redirect("auth/login");
-        }
-
-        $user = User::findByUsername($data['username']);
-
-        if (!$user) {
-            $this->redirect("auth/login");
-        }
-
-        return $user;
-    }
-
     public function handleLogin() {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
@@ -42,6 +22,7 @@ class AuthController extends Controller {
         }
 
         $token = Token::create([
+            'id' => $user->getID(),
             'username' => $user->getUsername()
         ], $remember ? (86400 * 3) : 3600); 
 

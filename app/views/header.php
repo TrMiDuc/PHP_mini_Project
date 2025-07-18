@@ -16,8 +16,8 @@ $hideWelcomePaths = [
         style="background-color: #333; color: white; padding: 10px 20px; font-family: Arial, sans-serif; position: relative; z-index: 9999;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
 
-            <div style="font-size: 20px;">
-                <a href="/PHP_mini_Project/public/" style="color: inherit; text-decoration: none;">🌐 PHP_mini</a>
+            <div style="font-size: 20px; display: flex">
+                <a href="/PHP_mini_Project/public/" style="color: cyan; text-decoration: none;">🌐 <strong>PHP_mini</strong></a>
             </div>
 
             <?php if (!in_array($currentPath, $hideWelcomePaths)): ?>
@@ -32,7 +32,7 @@ $hideWelcomePaths = [
                     style="min-width: 100%; z-index: 999999; text-align: center">
                     <li class="dropdown-header " style="word-wrap: break-word; overflow-wrap: break-word; white-space: normal;">
                         Welcome,
-                        <strong><?= (!empty($username) && $username !== 'Guest') ? htmlspecialchars($username) : 'Guest' ?></strong>
+                        <strong style="color: blue; font-size; 20"><?= (!empty($username) && $username !== 'Guest') ? htmlspecialchars($username) : 'Guest' ?></strong>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -60,5 +60,4 @@ $hideWelcomePaths = [
             <?php endif; ?>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 </body>

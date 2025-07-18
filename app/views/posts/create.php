@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Post</title>
-    <link rel="stylesheet" href="/assets/style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Create New Post</h1>
-        <form action="/posts/store" method="POST">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" required>
-            </div>
-            <div class="form-group">
-                <label for="content">Content</label>
-                <textarea id="content" name="content" required></textarea>
-            </div>
-            <button type="submit">Create Post</button>
-        </form>
-        <a href="/posts/index">Back to Posts</a>
-    </div>
-</body>
-</html>
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="mb-4 text-center">✍️ Tạo Bài Viết Mới</h2>
+    
+    <?php if (!empty($message)): ?>
+        <div class="alert alert-danger"><?= htmlspecialchars($message) ?></div>
+    <?php endif; ?>
+
+    <form action="/PHP_mini_Project/public/posts/create" method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Tiêu đề</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Nội dung</label>
+            <textarea class="form-control" id="content" name="content" rows="6" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Đăng Bài</button>
+    </form>
+</div>

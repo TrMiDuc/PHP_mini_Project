@@ -1,25 +1,24 @@
-<?php
-// This file displays the details of a single post.
+<div class="container mt-5" style="max-width: 700px;">
+    <div class="card p-4 shadow-sm">
+        <h2 class="card-title mb-3"><?= htmlspecialchars($post->getTitle()) ?></h2>
+        
+        <p class="text-muted mb-2" style="font-size: 14px;">
+            🕒 Đăng lúc: <?= date("H:i d/m/Y", strtotime($post->getCreatedAt())) ?>
+        </p>
 
-$post = ""/* Fetch the post data from the controller or model */;
+        <p class="card-text" style="white-space: pre-wrap;">
+            <?= nl2br(htmlspecialchars($post->getContent())) ?>
+        </p>
 
-?>
+        <div class="mt-4 d-flex justify-content-between">
+            <?php if (isset($user_id) && $user_id === $post->getUserID()): ?>
+                <div class="btn-group">
+                    <a href="/PHP_mini_Project/public/posts/edit/<?= $post->getID() ?>" class="btn btn-outline-secondary">✏️ Chỉnh sửa</a>
+                    <a href="/PHP_mini_Project/public/posts/delete/<?= $post->getID() ?>" class="btn btn-outline-danger" onclick="return confirm('Bạn chắc chắn muốn xóa bài viết này?');">🗑️ Xoá</a>
+                </div>
+            <?php endif; ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($post['title']); ?></title>
-    <link rel="stylesheet" href="/assets/style.css">
-</head>
-<body>
-    <div class="container">
-        <h1><?php echo htmlspecialchars($post['title']); ?></h1>
-        <div class="post-content">
-            <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
+            <a href="/PHP_mini_Project/public/" class="btn btn-outline-primary">⬅️ Quay lại danh sách</a>
         </div>
-        <a href="/posts/index.php">Back to Posts</a>
     </div>
-</body>
-</html>
+</div>

@@ -3,7 +3,6 @@ require_once realpath(__DIR__ . '/../core/Controller.php');
 require_once realpath(__DIR__ . '/../core/Router.php');
 require_once realpath(__DIR__ . '/../core/Token.php');
 
-require_once realpath(__DIR__ . '/../app/controllers/pageController.php');
 require_once realpath(__DIR__ . '/../app/controllers/authController.php');
 require_once realpath(__DIR__ . '/../app/controllers/postController.php');
 
@@ -35,8 +34,8 @@ if ($url === '' || $url === false) {
 }
 
 $router = new Router();
-$router->addRoute('GET', '/', 'PageController', 'index');
-$router->addRoute('GET', '/index.php', 'PageController', 'index');
+$router->addRoute('GET', '/', 'PostController', 'index');
+$router->addRoute('GET', '/index.php', 'PostController', 'index');
 
 $router->addRoute('GET', '/auth/login', 'AuthController', 'showLogin');
 $router->addRoute('POST', '/auth/login', 'AuthController', 'handleLogin');
@@ -44,8 +43,12 @@ $router->addRoute('GET', '/auth/signup', 'AuthController', 'showSignup');
 $router->addRoute('POST', '/auth/signup', 'AuthController', 'handleSignup');
 $router->addRoute('GET', '/auth/logout', 'AuthController', 'logout');
 
-$router->addRoute('GET', '/posts/index', 'PostController', 'index');
 $router->addRoute('GET', '/posts/create', 'PostController', 'create');
+$router->addRoute('POST', '/posts/create', 'PostController', 'store');
+$router->addRoute('GET', '/posts/show/{id}', 'PostController', 'show');
+$router->addRoute('GET', '/posts/edit/{id}', 'PostController', 'edit');
+$router->addRoute('POST', '/posts/edit/{id}', 'PostController', 'update');
+$router->addRoute('GET', '/posts/delete/{id}', 'PostController', 'delete');
 
 try {
     $router->resolve($method, $url);
